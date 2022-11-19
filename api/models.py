@@ -17,7 +17,7 @@ class Couriersession(models.Model):
     user = models.ForeignKey(Couriers, on_delete=models.CASCADE)
     revenue_type = models.CharField(max_length=20, choices=REVENUE_TYPE_CHOICES)
     amount = models.IntegerField()
-    courier_time = models.DateTimeField()
+    courier_time = models.DateField()
 
     def __str__(self) -> str:
         return str(self.user.username) + str(self.pk)

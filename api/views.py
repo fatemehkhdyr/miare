@@ -1,11 +1,18 @@
 from rest_framework.generics import ListCreateAPIView, ListAPIView
-from .models import Couriersession, DailyIncome, WeeklyIncome
-from .serializer import CouriersessionSerialiazer,DailyIncomeSerialiazer, WeeklyIncomeSerialiazer
+from rest_framework import permissions
+from .models import Couriersession, DailyIncome, WeeklyIncome, Couriers
+from .serializer import CouriersessionSerialiazer,DailyIncomeSerialiazer, WeeklyIncomeSerialiazer, Couriersserializer
 
+
+class CouriersList(ListCreateAPIView):
+    queryset = Couriers.objects.all()
+    serializer_class = Couriersserializer
+    permission_classes = [permissions.IsAdminUser]
 
 class CouriersessionList(ListCreateAPIView):
     queryset = Couriersession.objects.all()
     serializer_class = CouriersessionSerialiazer
+    permission_classes = [permissions.IsAdminUser]
 
 class DailyIncomeList(ListAPIView):
     queryset = DailyIncome.objects.all()
